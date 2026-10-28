@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090719">
+<title>خانواده ما | امیر حسین جبارفر</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink:#ff7bdb;
+  --blue:#72e5ff;
+  --purple:#ba91ff;
+  --gold:#ffe5a6;
+  --white:#fff;
+  --glass:rgba(255,255,255,.075);
+  --border:rgba(255,255,255,.20);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;color:white;
+  font-family:"Lalezar",sans-serif;
+  background:#090719;
+  background-image:
+    radial-gradient(ellipse at 10% 15%,#65278d80,transparent 42%),
+    radial-gradient(ellipse at 90% 25%,#075b8b80,transparent 43%),
+    radial-gradient(ellipse at 50% 100%,#7e235b50,transparent 48%),
+    linear-gradient(135deg,#090719,#15102e 50%,#080a20);
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+button{font-family:inherit;color:inherit}
+button:focus-visible{outline:2px solid white;outline-offset:5px}
+button:active{transform:scale(.97)}
+#universe{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.ambient{
+  position:fixed;pointer-events:none;z-index:0;border-radius:50%;
+  filter:blur(100px);opacity:.38;
+  animation:ambientMove 15s ease-in-out infinite alternate;
+}
+.ambient.one{width:340px;height:340px;background:#a13bff;top:-140px;right:-100px}
+.ambient.two{width:380px;height:380px;background:#168cff;bottom:-180px;left:-140px;animation-delay:-5s}
+.ambient.three{width:260px;height:260px;background:#ff4eac;top:40%;right:30%;animation-delay:-8s}
+@keyframes ambientMove{
+  0%{transform:translate3d(0,0,0) scale(.8)}
+  100%{transform:translate3d(70px,-65px,0) scale(1.35)}
+}
+.noise{
+  position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:1;
+  opacity:.09;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+.progress-track{
+  position:fixed;top:0;left:0;right:0;height:3px;
+  background:#ffffff10;z-index:100;
+}
+.progress-bar{
+  height:100%;width:0;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue),var(--gold));
+  box-shadow:0 0 20px var(--purple),0 0 40px var(--blue);
+  transition:width .8s ease;
+}
+.nav{
+  position:fixed;top:12px;left:12px;right:12px;z-index:90;
+  min-height:58px;padding:10px 17px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  border:1px solid #ffffff25;border-radius:22px;
+  background:rgba(12,9,32,.43);
+  backdrop-filter:blur(45px) saturate(180%);
+  -webkit-backdrop-filter:blur(45px) saturate(180%);
+  box-shadow:0 12px 45px #0004,inset 0 1px #ffffff22;
+}
+.nav-brand{font-size:22px;color:var(--gold)}
+.nav-step{font-size:16px;color:#e4d9ff}
+main{
+  position:relative;z-index:2;
+  width:min(1160px,100%);min-height:100vh;
+  margin:auto;padding:105px 18px 30px;
+  display:flex;align-items:center;justify-content:center;
+}
+.page{display:none;width:100%}
+.page.active{display:block;animation:pageEnter 1.2s cubic-bezier(.16,1,.3,1) both}
+@keyframes pageEnter{
+  0%{opacity:0;transform:translateY(45px) scale(.94);filter:blur(35px)}
+  65%{filter:blur(5px)}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+
+/* Glass panels */
+.glass{
+  position:relative;isolation:isolate;overflow:hidden;
+  border:1px solid rgba(255,255,255,.23);
+  border-radius:32px;
+  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.025) 55%,rgba(175,127,255,.065));
+  backdrop-filter:blur(50px) saturate(180%);
+  -webkit-backdrop-filter:blur(50px) saturate(180%);
+  box-shadow:0 25px 90px #0005,inset 0 1px 1px #ffffff35,inset 0 -1px #ffffff08;
+}
+.glass::before{
+  content:"";position:absolute;inset:-100% -50%;
+  z-index:-1;pointer-events:none;
+  background:linear-gradient(110deg,transparent 37%,#ffffff08 44%,#ffffff25 49%,#ffffff08 54%,transparent 62%);
+  transform:translateX(-70%) rotate(12deg);
+  animation:glassShimmer 8s ease-in-out infinite;
+}
+@keyframes glassShimmer{
+  0%,35%{transform:translateX(-70%) rotate(12deg)}
+  75%,100%{transform:translateX(70%) rotate(12deg)}
+}
+.glass::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  pointer-events:none;
+  box-shadow:inset 0 0 40px #ffffff04;
+}
+.hero{
+  min-height:650px;padding:35px 20px;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  text-align:center;
+}
+.creator{
+  width:min(760px,100%);padding:16px 20px;margin-bottom:27px;
+  border:1px solid #ffe4a67a;border-radius:24px;
+  background:linear-gradient(110deg,#ffe3a618,#ffffff09,#ff8bdc12);
+  box-shadow:0 0 35px #ffcf7920,inset 0 0 25px #fff1;
+  animation:creatorGlow 3s ease-in-out infinite alternate;
+}
+@keyframes creatorGlow{
+  from{box-shadow:0 0 20px #ffcf7915,inset 0 0 18px #fff1}
+  to{box-shadow:0 0 50px #ffcf7935,0 0 80px #c88bff13,inset 0 0 30px #fff2}
+}
+.creator-label{font-size:24px;color:var(--gold)}
+.creator-name{
+  display:block;font-size:clamp(32px,7vw,66px);line-height:1.4;
+  background:linear-gradient(100deg,#fff,var(--gold),#ffb4e9,#fff);
+  background-size:250% auto;
+  color:transparent;-webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 0 22px #ffd99450);
+  animation:goldShine 4s linear infinite;
+}
+@keyframes goldShine{to{background-position:250% center}}
+.logo-orb{
+  width:112px;height:112px;display:grid;place-items:center;
+  border:1px solid #ffffff50;border-radius:36px;
+  background:linear-gradient(145deg,#ffffff25,#ffffff04);
+  box-shadow:0 0 50px #c38bff38,inset 0 0 28px #fff2;
+  font-size:58px;margin-bottom:23px;
+  animation:orbFloat 4s ease-in-out infinite;
+}
+@keyframes orbFloat{
+  0%,100%{transform:translateY(0) rotate(-5deg)}
+  50%{transform:translateY(-12px) rotate(5deg)}
+}
+h1{
+  margin:0 0 12px;font-size:clamp(65px,12vw,135px);
+  line-height:1.2;
+  background:linear-gradient(110deg,#fff 5%,#ffd5f1 35%,#a9edff 65%,#fff);
+  background-size:200% auto;color:transparent;
+  -webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 0 24px #d5a5ff35);
+  animation:titleShine 6s linear infinite;
+}
+@keyframes titleShine{to{background-position:200% center}}
+.subtitle{
+  font-size:clamp(19px,3.2vw,26px);
+  color:#e8e0ff;line-height:2;margin:12px 0 25px;
+}
+.kicker{font-size:21px;color:var(--gold);margin-bottom:12px}
+.content{padding:clamp(22px,5vw,48px)}
+.section-icon{text-align:center;font-size:29px;margin-bottom:6px}
+h2{
+  text-align:center;font-size:clamp(39px,7vw,66px);
+  margin:0 0 8px;line-height:1.4;
+  text-shadow:0 0 28px #bba0ff28;
+}
+.actions{
+  display:flex;justify-content:center;align-items:center;
+  flex-wrap:wrap;gap:14px;margin-top:32px;position:relative;z-index:3;
+}
+.btn{
+  position:relative;overflow:hidden;
+  min-height:55px;padding:12px 26px;
+  border:1px solid #ffffff45;border-radius:19px;
+  background:rgba(255,255,255,.09);
+  backdrop-filter:blur(35px);
+  -webkit-backdrop-filter:blur(35px);
+  box-shadow:0 10px 35px #0002,inset 0 1px #ffffff25;
+  font-size:22px;cursor:pointer;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.btn::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(110deg,transparent,#ffffff24,transparent);
+  transform:translateX(-120%);transition:transform .7s;
+}
+.btn:hover::before{transform:translateX(120%)}
+.btn:hover{
+  transform:translateY(-5px);
+  border-color:#ffffffa0;
+  box-shadow:0 15px 45px #a984ff32,inset 0 1px #ffffff45;
+}
+.btn.primary{
+  background:linear-gradient(110deg,#a044cf75,#5468e899,#278fc888);
+  border-color:#ffffff70;
+  box-shadow:0 0 30px #a77aff2c,inset 0 1px #ffffff40;
+}
+.btn.back{font-size:19px}
+.members{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:15px;margin-top:32px;
+}
+.member{
+  min-height:125px;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:8px;padding:18px 8px;
+  border:1px solid #ffffff23;border-radius:25px;
+  background:linear-gradient(145deg,#ffffff14,#ffffff04);
+  backdrop-filter:blur(38px);-webkit-backdrop-filter:blur(38px);
+  box-shadow:0 12px 35px #0002,inset 0 1px #ffffff18;
+  transition:transform .35s,border-color .35s,box-shadow .35s;
+}
+.member:hover{
+  transform:translateY(-7px) scale(1.025);
+  border-color:#e0c4ff99;box-shadow:0 10px 38px #b783ff25;
+}
+.emoji{font-size:31px;filter:drop-shadow(0 0 12px #fff2)}
+.name{font-size:24px;text-align:center}
+.houses{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;margin-top:30px;
+}
+.house{
+  padding:26px 22px;border:1px solid #ffffff28;border-radius:28px;
+  background:linear-gradient(145deg,#ffffff13,#ffffff04);
+  backdrop-filter:blur(42px);-webkit-backdrop-filter:blur(42px);
+  box-shadow:0 16px 45px #0002,inset 0 1px #ffffff18;
+  transition:transform .3s,border-color .3s;
+}
+.house:hover{transform:translateY(-5px);border-color:#ffe5a680}
+.house-icon{font-size:48px;margin-bottom:10px}
+.house h3{font-size:34px;color:var(--gold);margin:0 0 14px}
+.address{
+  font-family:"Vazirmatn",sans-serif;font-size:17px;line-height:2.3;
+  color:#f0eaff;margin:0;
+}
+.note{text-align:center;font-size:19px;color:#e3d9ff;line-height:2;margin-top:25px}
+
+/* The tree */
+.tree-shell{
+  padding:clamp(14px,3vw,32px);margin-top:25px;
+  background:rgba(255,255,255,.035);
+}
+.tree-legend{text-align:center;font-size:19px;color:var(--gold);margin:7px 0 23px}
+.tree{display:flex;flex-direction:column;align-items:center;width:100%;gap:0}
+.generation{
+  width:100%;display:flex;justify-content:center;align-items:stretch;
+  flex-wrap:wrap;gap:12px;padding:7px 0;
+}
+.node{
+  min-width:105px;max-width:200px;padding:13px 15px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;position:relative;
+  border:1px solid #ffffff40;border-radius:21px;
+  background:linear-gradient(140deg,#ffffff1e,#ffffff07);
+  backdrop-filter:blur(35px);-webkit-backdrop-filter:blur(35px);
+  box-shadow:0 10px 30px #0002,inset 0 1px #ffffff25;
+  transition:transform .3s,box-shadow .3s;
+}
+.node:hover{transform:translateY(-4px);box-shadow:0 12px 35px #ad84ff32}
+.node .emoji{font-size:27px;margin-bottom:5px}
+.node .name{font-size:22px}
+.node.grand{border-color:#ffe1a090;background:linear-gradient(145deg,#ffe1a022,#ffffff06)}
+.node.branch{border-color:#c7a4ff8c;background:linear-gradient(145deg,#bd9aff20,#ffffff06)}
+.node.child{border-color:#75e5ff8c;background:linear-gradient(145deg,#75e5ff20,#ffffff06)}
+.node.special{border-color:#ff94d99c;background:linear-gradient(145deg,#ff94d925,#ffffff06)}
+.connector{
+  width:2px;height:27px;flex-shrink:0;
+  background:linear-gradient(#ffe1a0,#c19aff,#78e5ff);
+  box-shadow:0 0 12px #bd9aff50;
+}
+.families{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;width:100%;padding-top:8px;
+}
+.family{
+  min-width:0;padding:18px 10px;border:1px solid #ffffff26;
+  border-radius:26px;background:rgba(255,255,255,.035);
+  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
+  display:flex;align-items:center;flex-direction:column;
+}
+.family-title{font-size:26px;text-align:center;color:var(--gold);margin-bottom:15px}
+.parents,.children{display:flex;justify-content:center;align-items:stretch;flex-wrap:wrap;gap:9px}
+.parents .node{min-width:90px;padding:11px 8px}
+.parents .node .name,.children .node .name{font-size:20px}
+.mini-connector{height:25px;width:2px;background:linear-gradient(#c29dff,#7ce4ff);margin:0 auto}
+.children{width:100%}
+.children .node{min-width:88px;padding:11px 8px}
+.tree-end{
+  text-align:center;margin-top:23px;font-size:clamp(19px,3.5vw,28px);
+  color:var(--gold);text-shadow:0 0 28px #ffdda344;line-height:1.8;
+}
+.footer{
+  position:relative;z-index:2;text-align:center;
+  color:#cfc4e9;font-size:19px;padding:15px 12px 30px;
+}
+.footer span{color:var(--pink)}
+
+/* Sequential word-by-word blur entry */
+.word{
+  display:inline-block;
+  opacity:0;
+  filter:blur(24px);
+  transform:translateY(18px) scale(.94);
+  animation:wordReveal .9s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay:var(--word-delay,0s);
+}
+@keyframes wordReveal{
+  0%{opacity:0;filter:blur(24px);transform:translateY(18px) scale(.94)}
+  65%{opacity:1;filter:blur(4px)}
+  100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1)}
+}
+/* Each box enters separately */
+.stagger{
+  opacity:0;filter:blur(28px);transform:translateY(25px) scale(.94);
+  animation:boxReveal 1.05s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay:var(--box-delay,0s);
+}
+@keyframes boxReveal{
+  0%{opacity:0;filter:blur(28px);transform:translateY(25px) scale(.94)}
+  60%{opacity:1;filter:blur(6px)}
+  100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1)}
+}
+.page.active .glass{animation:panelReveal 1.25s cubic-bezier(.16,1,.3,1) both}
+@keyframes panelReveal{
+  from{opacity:0;filter:blur(30px);transform:scale(.96)}
+  to{opacity:1;filter:blur(0);transform:scale(1)}
+}
+
+@media(max-width:620px){
+  .nav{top:8px;left:8px;right:8px;min-height:51px;padding:8px 12px;border-radius:17px}
+  .nav-brand{font-size:19px}.nav-step{font-size:14px}
+  main{padding:86px 11px 24px}
+  .glass{border-radius:25px}
+  .hero{min-height:610px;padding:25px 13px}
+  .creator{padding:13px 9px}
+  .creator-label{font-size:21px}
+  .logo-orb{width:88px;height:88px;border-radius:28px;font-size:47px}
+  .content{padding:23px 14px}
+  .members{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .member{min-height:105px;padding:12px 6px;border-radius:20px}
+  .name{font-size:21px}
+  .houses{grid-template-columns:1fr;gap:14px}
+  .house{padding:21px 17px}
+  .house h3{font-size:30px}
+  .address{font-size:15px}
+  .families{grid-template-columns:1fr;gap:14px}
+  .node{min-width:90px;padding:11px 9px}
+  .node .name{font-size:19px}
+  .family{padding:15px 8px}
+  .actions{flex-direction:column;gap:10px}
+  .btn{width:100%;max-width:320px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+<canvas id="universe"></canvas>
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+<div class="ambient three"></div>
+<div class="noise"></div>
+<div class="progress-track"><div class="progress-bar" id="progress"></div></div>
+
+<header class="nav">
+  <div class="nav-brand">✦ خانواده ما</div>
+  <div class="nav-step" id="navStep">یک داستان زیبا</div>
+</header>
+
+<main>
+
+<!-- PAGE 1 -->
+<section class="page active" data-title="خوش آمدید">
+  <div class="glass hero">
+    <div class="creator stagger">
+      <div class="creator-label">سازنده :</div>
+      <span class="creator-name">امیر حسین جبارفر</span>
+    </div>
+
+    <div class="logo-orb stagger">🏡</div>
+    <div class="kicker">یک دنیا عشق، یک خانواده</div>
+
+    <h1>خانواده ما</h1>
+
+    <p class="subtitle">
+      داستان زیبای ما<br>
+      از ریشه‌هایی پر از عشق تا خاطره‌هایی ماندگار
+    </p>
+
+    <div class="actions stagger">
+      <button class="btn primary" onclick="nextPage()">شروع داستان ✨</button>
+    </div>
+
+    <p class="note">💜 کنار هم، یک خانواده‌ایم 💜</p>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" data-title="اعضای خانواده">
+  <div class="glass content">
+    <div class="section-icon">✦ 💜 ✦</div>
+    <h2>اعضای خانواده</h2>
+    <p class="subtitle" style="text-align:center">
+      هر نفر یک ستاره؛ کنار هم یک آسمان
+    </p>
+
+    <div class="members">
+      <div class="member stagger"><span class="emoji">🌸</span><span class="name">خاله جانی</span></div>
+      <div class="member stagger"><span class="emoji">🌷</span><span class="name">فریبا</span></div>
+      <div class="member stagger"><span class="emoji">👨🏻</span><span class="name">دایی شاهین</span></div>
+      <div class="member stagger"><span class="emoji">👨🏻‍🦱</span><span class="name">دایی شهاب</span></div>
+      <div class="member stagger"><span class="emoji">🦋</span><span class="name">مهرو</span></div>
+      <div class="member stagger"><span class="emoji">⭐</span><span class="name">کیان</span></div>
+      <div class="member stagger"><span class="emoji">👵🏻</span><span class="name">مادر جون</span></div>
+      <div class="member stagger"><span class="emoji">👴🏻</span><span class="name">پدر جون</span></div>
+      <div class="member stagger"><span class="emoji">👑</span><span class="name">امیر حسین</span></div>
+      <div class="member stagger"><span class="emoji">💙</span><span class="name">مهدی</span></div>
+    </div>
+
+    <div class="actions stagger">
+      <button class="btn back" onclick="prevPage()">مرحله قبل ←</button>
+      <button class="btn primary" onclick="nextPage()">مرحله بعد ✨</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" data-title="خانه‌های خانواده">
+  <div class="glass content">
+    <div class="section-icon">🏡 ✧ 🏠</div>
+    <h2>خانه‌ها</h2>
+    <p class="subtitle" style="text-align:center">
+      هر خانه، دنیایی از خاطره‌های قشنگ
+    </p>
+
+    <div class="houses">
+      <article class="house stagger">
+        <div class="house-icon">🏡</div>
+        <h3>خونه مادر جون</h3>
+        <p class="address">
+          نارمک<br>
+          خیابان دردشت<br>
+          کوچه صبوری<br>
+          پلاک ۱۹ · واحد ۱
+        </p>
+      </article>
+
+      <article class="house stagger">
+        <div class="house-icon">🏠</div>
+        <h3>خونه فریبا</h3>
+        <p class="address">
+          نیروی هوایی<br>
+          خیابان ۹/۳۱<br>
+          پلاک ۲۵ · واحد ۲
+        </p>
+      </article>
+    </div>
+
+    <p class="note stagger">خانه یعنی عشق؛ خانواده یعنی آرامش ✨</p>
+
+    <div class="actions stagger">
+      <button class="btn back" onclick="prevPage()">مرحله قبل ←</button>
+      <button class="btn primary" onclick="nextPage()">نمایش درخت خانوادگی 🌳</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 4 -->
+<section class="page" data-title="درخت خانوادگی">
+  <div class="glass content">
+    <div class="section-icon">🌳 ✨ 🌳</div>
+    <h2>درخت خانوادگی ما</h2>
+    <p class="subtitle" style="text-align:center">
+      ریشه‌های مشترک، شاخه‌های پر از عشق
+    </p>
+
+    <div class="glass tree-shell stagger">
+      <div class="tree-legend">✦ نسل اول · پدربزرگ و مادربزرگ ✦</div>
+
+      <div class="tree">
+        <!-- Grandparents -->
+        <div class="generation">
+          <div class="node grand stagger">
+            <span class="emoji">👵🏻</span>
+            <span class="name">مادر جون</span>
+          </div>
+          <div class="node grand stagger">
+            <span class="emoji">👴🏻</span>
+            <span class="name">پدر جون</span>
+          </div>
+        </div>
+
+        <div class="connector stagger"></div>
+
+        <!-- Second generation -->
+        <div class="generation">
+          <div class="node branch stagger"><span class="emoji">🌷</span><span class="name">فریبا</span></div>
+          <div class="node branch stagger"><span class="emoji">🌸</span><span class="name">الهام</span></div>
+          <div class="node branch stagger"><span class="emoji">👨🏻‍🦱</span><span class="name">شهاب</span></div>
+          <div class="node branch stagger"><span class="emoji">👨🏻</span><span class="name">شاهین</span></div>
+        </div>
+
+        <div class="connector stagger"></div>
+
+        <!-- Family branches -->
+        <div class="families">
+
+          <div class="family stagger">
+            <div class="family-title">💗 خانواده فریبا</div>
+            <div class="parents">
+              <div class="node branch stagger">
+                <span class="emoji">🌷</span><span class="name">فریبا</span>
+              </div>
+              <div class="node branch stagger">
+                <span class="emoji">💙</span><span class="name">مهدی</span>
+              </div>
+            </div>
+            <div class="mini-connector stagger"></div>
+            <div class="tree-legend">فرزند</div>
+            <div class="children">
+              <div class="node special stagger">
+                <span class="emoji">👑</span><span class="name">امیر حسین</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="family stagger">
+            <div class="family-title">💜 خانواده شهاب</div>
+            <div class="parents">
+              <div class="node branch stagger">
+                <span class="emoji">👨🏻‍🦱</span><span class="name">شهاب</span>
+              </div>
+              <div class="node branch stagger">
+                <span class="emoji">🌺</span><span class="name">صدف</span>
+              </div>
+            </div>
+            <div class="mini-connector stagger"></div>
+            <div class="tree-legend">فرزندان</div>
+            <div class="children">
+              <div class="node child stagger">
+                <span class="emoji">🦋</span><span class="name">مهرو</span>
+              </div>
+              <div class="node child stagger">
+                <span class="emoji">⭐</span><span class="name">کیان</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="tree-end stagger">
+          🌟 خانواده ما؛ یک ریشه، هزاران خاطره 🌟
+        </div>
+      </div>
+    </div>
+
+    <div class="actions stagger">
+      <button class="btn back" onclick="prevPage()">مرحله قبل ←</button>
+      <button class="btn primary" onclick="restart()">شروع دوباره ✨</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  طراحی‌شده با <span>♥</span> برای خانواده ما
+</footer>
+
+<script>
+const pages = Array.from(document.querySelectorAll(".page"));
+const progress = document.getElementById("progress");
+const navStep = document.getElementById("navStep");
+
+let current = 0;
+let busy = false;
+
+/* Split every text node into individually animated words.
+   Whitespace is retained so Persian text remains readable. */
+function splitWords(root) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (node.nodeValue.trim()) nodes.push(node);
+  }
+
+  nodes.forEach(node => {
+    const fragment = document.createDocumentFragment();
+    const parts = node.nodeValue.match(/\s+|[^\s]+/g) || [];
+
+    parts.forEach(part => {
+      if (/^\s+$/.test(part)) {
+        fragment.appendChild(document.createTextNode(part));
+      } else {
+        const span = document.createElement("span");
+        span.className = "word";
+        span.textContent = part;
+        fragment.appendChild(span);
+      }
+    });
+
+    node.parentNode.replaceChild(fragment, node);
+  });
+}
+
+/* Prepare all pages once, including buttons and tree labels. */
+pages.forEach(page => splitWords(page));
+
+function replayAnimations(page) {
+  const words = Array.from(page.querySelectorAll(".word"));
+  const boxes = Array.from(page.querySelectorAll(".stagger"));
+
+  // Reset animations so revisiting a page plays them again.
+  words.forEach(el => {
+    el.style.animation = "none";
+    el.style.opacity = "0";
+  });
+  boxes.forEach(el => {
+    el.style.animation = "none";
+    el.style.opacity = "0";
+  });
+
+  void page.offsetWidth;
+
+  // Every box enters in order, with a strong blur.
+  boxes.forEach((el, i) => {
+    const delay = Math.min(i * 0.13, 4.5);
+    el.style.setProperty("--box-delay", delay + "s");
+    el.style.animation = `boxReveal 1.05s cubic-bezier(.16,1,.3,1) ${delay}s both`;
+  });
+
+  // Words then appear one by one across the page.
+  // A short stagger keeps the sequence dramatic without becoming too slow.
+  words.forEach((el, i) => {
+    const delay = Math.min(i * 0.055, 5.2);
+    el.style.setProperty("--word-delay", delay + "s");
+    el.style.animation = `wordReveal .9s cubic-bezier(.16,1,.3,1) ${delay}s both`;
+  });
+}
+
+function showPage(index) {
+  if (busy || index < 0 || index >= pages.length) return;
+
+  busy = true;
+  pages[current].classList.remove("active");
+  current = index;
+
+  const page = pages[current];
+  page.classList.remove("active");
+  void page.offsetWidth;
+  page.classList.add("active");
+
+  navStep.textContent = page.dataset.title;
+  progress.style.width = ((current + 1) / pages.length * 100) + "%";
+
+  replayAnimations(page);
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  setTimeout(() => { busy = false; }, 500);
+}
+
+function nextPage() {
+  if (current < pages.length - 1) showPage(current + 1);
+}
+function prevPage() {
+  if (current > 0) showPage(current - 1);
+}
+function restart() {
+  showPage(0);
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "ArrowLeft") nextPage();
+  if (event.key === "ArrowRight") prevPage();
+});
+
+/* Animated cosmic particles */
+const canvas = document.getElementById("universe");
+const ctx = canvas.getContext("2d");
+let width = 0, height = 0, dpr = 1, particles = [];
+
+function resizeCanvas() {
+  dpr = Math.min(window.devicePixelRatio || 1, 2);
+  width = window.innerWidth;
+  height = window.innerHeight;
+
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
+  canvas.style.width = width + "px";
+  canvas.style.height = height + "px";
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const count = Math.min(85, Math.max(35, Math.floor(width / 14)));
+  particles = Array.from({length: count}, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    r: Math.random() * 2.2 + .4,
+    vx: (Math.random() - .5) * .3,
+    vy: (Math.random() - .5) * .24,
+    phase: Math.random() * 6.28,
+    hue: [190, 260, 315, 42][Math.floor(Math.random() * 4)]
+  }));
+}
+
+function draw() {
+  ctx.clearRect(0, 0, width, height);
+
+  for (const p of particles) {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.phase += .018;
+
+    if (p.x < -5) p.x = width + 5;
+    if (p.x > width + 5) p.x = -5;
+    if (p.y < -5) p.y = height + 5;
+    if (p.y > height + 5) p.y = -5;
+
+    const alpha = .28 + (Math.sin(p.phase) + 1) * .25;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `hsla(${p.hue},100%,82%,${alpha})`;
+    ctx.shadowBlur = 14;
+    ctx.shadowColor = `hsla(${p.hue},100%,70%,.8)`;
+    ctx.fill();
+  }
+
+  ctx.shadowBlur = 0;
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+draw();
+
+progress.style.width = (100 / pages.length) + "%";
+replayAnimations(pages[0]);
+</script>
+</body>
+</html>
